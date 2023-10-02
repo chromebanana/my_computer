@@ -1,0 +1,18 @@
+[include]
+	path = ~/.secret.gitconfig
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[commit]
+	template = /Users/william.cragg/.git_commit_msg.txt
+[alias]
+	pushfl = push --force-with-lease
+	fixup = "!f() { git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit $@ --fixup; }; f"
+	fixupnv = "!f() { git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit $@ --no-verify --fixup; }; f"
+	wip = commit -am "WIP" --no-verify   
+[init]
+	defaultBranch = main
