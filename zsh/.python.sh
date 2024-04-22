@@ -51,5 +51,5 @@ compctl -K _complete_invoke + -f invoke inv
 # vim: set ft=sh :
 
 ## pytest
-test="inv localdev.pytest"
-pdb="inv localdev.pytest --pdb"
+alias test="inv localdev.pytest"
+alias pdb="inv localdev.pytest --pdb"
