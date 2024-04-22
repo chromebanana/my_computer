@@ -25,4 +25,4 @@ function kctx() {
     [[ -n "$ctx" ]] && kubectl config use-context "$ctx"
 }
 
-
+alias invfzf='inv $(inv --list | cut -d " " -f 3 | sed "/^$/d" | fzf --preview="inv -h={}")'
