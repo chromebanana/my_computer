@@ -1,7 +1,6 @@
 cask_args appdir: '/Applications'
 
 tap "1password/tap"
-tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "owenthereal/upterm"
@@ -47,7 +46,6 @@ brew "wget"
 brew "xclip"
 brew "xdg-ninja"
 brew "zlib"
-brew "kraken/temp/libxmlsec1"
 brew "owenthereal/upterm/upterm"
 
 cask "1password-cli"
