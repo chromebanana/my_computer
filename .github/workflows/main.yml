@@ -26,6 +26,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
       - if: ${{ steps.cache-brew.outputs.cache-hit == false }}
         name: List the state of homebrew
         continue-on-error: true
