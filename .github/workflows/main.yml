@@ -3,7 +3,6 @@ name: Build My Computer
 on:
   pull_request:
   push:
-
   workflow_dispatch:
 
 jobs:
@@ -13,28 +12,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Homebrew Cellar
+      - name: Cache Homebrew
+       # caching downloads only -- caching the cellar proved to much of a headache
         id: cache-brew
         uses: actions/cache@v4
         env:
-          cache-name: cache-brew-cellar
+          cache-name: cache-homebrew
         with:
           path: |
-            /usr/local/Cellar
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
+            /Users/runner/Library/Caches/Homebrew
+          key: ${{ runner.os }}-${{ env.cache-name }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+              ${{ runner.os }}-${{ env.cache-name }}-
 
-      - if: ${{ steps.cache-brew.outputs.cache-hit == false }}
-        name: List the state of homebrew
-        continue-on-error: true
-        run: brew list
+      - name: Install Dependencies
+        run: |
+          # ./install.sh requires globstar which is not available in the runner's macOS
+          # shell, so we need to use bash to run the script
 
-      - name: Run install script
+          brew install ncurses
+          brew link --force ncurses
+
+          brew install bash
+          brew link bash
+
+          # Fix potential dependency issues by ensuring the dynamic linker knows about the libraries
+          export DYLD_LIBRARY_PATH="/opt/homebrew/opt/ncurses/lib:$DYLD_LIBRARY_PATH"
+
+      - name: Run install script with Homebrew bash
         env:
           NONINTERACTIVE: 1
+          DYLD_LIBRARY_PATH: "/opt/homebrew/opt/ncurses/lib:$DYLD_LIBRARY_PATH"
         run: |
-          brew install bash
-          ./install.sh
+          /opt/homebrew/bin/bash ./install.sh
