@@ -13,5 +13,4 @@ shopt -s globstar nullglob
 pinfo "Installing homebrew bundle"
 brewfile_path="${dirpath}/homebrew/brewfile"
 pinfo "Installing brewfile from ${brewfile_path}"
-pwarn "Some commands may require sudo priviledges"
-brew bundle --file="${brewfile_path}" -v install || pwarn "bundle encoutered errors, continuing"
+brew bundle --file="${brewfile_path}" -v install || pwarn "bundle encountered errors, continuing"
