@@ -3,14 +3,18 @@
 set -euo pipefail
 
 # Path to this script
-dirpath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${dirpath}/utils.sh"
+export DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${DOTFILES}/utils.sh"
+cd "${DOTFILES}"
 
-cd "$(dirname ${0})"
-
-shopt -s globstar nullglob
+shopt -s globstar nullglob dotglob
+pinfo "Creating symlinks"
+find "${DOTFILES}" -name "*.symlink" | while read -r file; do
+    # %.* removes all characters including and after the dot
+    ln -sfv "${file}" "$HOME/.$(basename "${file%.*}" | sed 's/^\.//')"
+done
 
 pinfo "Installing homebrew bundle"
-brewfile_path="${dirpath}/homebrew/brewfile"
+brewfile_path="${DOTFILES}/homebrew/brewfile"
 pinfo "Installing brewfile from ${brewfile_path}"
 brew bundle --file="${brewfile_path}" -v install || pwarn "bundle encountered errors, continuing"
