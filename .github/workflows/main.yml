@@ -25,23 +25,8 @@ jobs:
           restore-keys: |
               ${{ runner.os }}-${{ env.cache-name }}-
 
-      - name: Install Dependencies
-        run: |
-          # ./install.sh requires globstar which is not available in the runner's macOS
-          # shell, so we need to use bash to run the script
-
-          brew install ncurses
-          brew link --force ncurses
-
-          brew install bash
-          brew link bash
-
-          # Fix potential dependency issues by ensuring the dynamic linker knows about the libraries
-          export DYLD_LIBRARY_PATH="/opt/homebrew/opt/ncurses/lib:$DYLD_LIBRARY_PATH"
-
-      - name: Run install script with Homebrew bash
+      - name: Run install script
         env:
           NONINTERACTIVE: 1
-          DYLD_LIBRARY_PATH: "/opt/homebrew/opt/ncurses/lib:$DYLD_LIBRARY_PATH"
         run: |
-          /opt/homebrew/bin/bash ./install.sh
+          ./install.sh
