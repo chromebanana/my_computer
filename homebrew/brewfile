@@ -48,6 +48,7 @@ brew "xdg-ninja"
 brew "zlib"
 brew "owenthereal/upterm/upterm"
 
+cask "1password"
 cask "1password-cli"
 cask "arc"
 cask "firefox"
