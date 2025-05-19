@@ -17,3 +17,9 @@ pinfo "Installing homebrew bundle"
 brewfile_path="${DOTFILES}/homebrew/brewfile"
 pinfo "Installing brewfile from ${brewfile_path}"
 brew bundle --file="${brewfile_path}" -v install || pwarn "bundle encountered errors, continuing"
+
+pinfo "Running topic installers"
+find "${DOTFILES}" -name 'install.sh' -mindepth 2 -print0 | while read -rd $'\0' file; do
+    pinfo "Running installer ${file}"
+    bash -eu -o pipefail "${file}"
+done
