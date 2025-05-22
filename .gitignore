@@ -1,2 +1,2 @@
-zsh/.secrets.sh
+*.secret.*
 .DS_Store
