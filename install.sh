@@ -17,3 +17,4 @@ pinfo "Installing homebrew bundle"
 brewfile_path="${DOTFILES}/homebrew/brewfile"
 pinfo "Installing brewfile from ${brewfile_path}"
 brew bundle --file="${brewfile_path}" -v install || pwarn "bundle encountered errors, continuing"
+

@@ -1,4 +1,4 @@
-export ZSH_PATH="$HOME/.dotfiles/zsh/"
+export ZSH_PATH="$HOME/.config/zsh/"
 source $ZSH_PATH.git.sh
 source $ZSH_PATH.paths.sh
 source $ZSH_PATH.python.sh
