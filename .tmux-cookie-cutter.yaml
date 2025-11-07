@@ -1,0 +1,4 @@
+default_windows:
+  - name: "editor"
+  - name: "terminal"
+  - name: "Aran is great"
