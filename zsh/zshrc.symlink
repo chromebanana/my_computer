@@ -6,7 +6,7 @@ source $ZSH_PATH.history.sh
 source $ZSH_PATH.fzf.sh
 source $ZSH_PATH.powerline.sh
 source $ZSH_PATH.zsh.sh
-source $ZSH_PATH.secrets.sh
+source $ZSH_PATH.secret.sh
 
 export EDITOR=vim # editor for 'crontab -e'
 
