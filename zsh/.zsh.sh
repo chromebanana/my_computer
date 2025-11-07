@@ -21,6 +21,6 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git history-substring-search)
+plugins=(gitfast history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
