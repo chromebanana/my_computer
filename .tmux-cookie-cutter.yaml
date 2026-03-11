@@ -1,4 +1,4 @@
 default_windows:
   - name: "editor"
+    command: "nvim"
   - name: "terminal"
-  - name: "Aran is great"
