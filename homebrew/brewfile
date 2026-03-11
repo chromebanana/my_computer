@@ -1,14 +1,9 @@
-cask_args appdir: '/Applications'
-
-tap "1password/tap"
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "owenthereal/upterm"
-
+tap "kraken/temp"
+tap "nikitabobko/tap"
+tap "octoenergy/kraken-cli", "git@github.com:octoenergy/kraken-cli.git"
 brew "xz"
 brew "automake"
 brew "binutils"
-brew "gettext"
 brew "cairo"
 brew "cookiecutter"
 brew "unbound"
@@ -28,10 +23,12 @@ brew "libmemcached"
 brew "libxml2"
 brew "memcached"
 brew "mpv"
+brew "neovim"
+brew "nmap"
 brew "node"
-brew "openssl@1.1"
 brew "oxipng"
 brew "pcre"
+brew "pgcli"
 brew "pipx"
 brew "prettier"
 brew "pyenv"
@@ -39,6 +36,7 @@ brew "pyenv-virtualenvwrapper"
 brew "python@3.11"
 brew "python@3.12"
 brew "ripgrep"
+brew "rust"
 brew "tig"
 brew "tmux"
 brew "todo-txt"
@@ -46,19 +44,22 @@ brew "wget"
 brew "xclip"
 brew "xdg-ninja"
 brew "zlib"
-brew "owenthereal/upterm/upterm"
-
-cask "1password"
-cask "1password-cli"
-cask "arc"
-cask "firefox"
-cask "flycut"
-cask "iterm2"
-cask "libreoffice"
+brew "kraken/temp/openssl@1.1"
+brew "kraken/temp/libxmlsec1"
+brew "octoenergy/kraken-cli/kraken-cli"
+cask "1password", args: { appdir: "/Applications" }
+cask "1password-cli", args: { appdir: "/Applications" }
+cask "aerospace"
+cask "alacritty"
+cask "arc", args: { appdir: "/Applications" }
+cask "firefox", args: { appdir: "/Applications" }
+cask "flycut", args: { appdir: "/Applications" }
+cask "font-meslo-lg-nerd-font"
+cask "iterm2", args: { appdir: "/Applications" }
+cask "libreoffice", args: { appdir: "/Applications" }
 cask "notion"
-cask "obsidian"
-cask "rectangle"
-cask "spotify"
-cask "stretchly"
-cask "telegram"
-cask "visual-studio-code"
+cask "obsidian", args: { appdir: "/Applications" }
+cask "postgres-unofficial"
+cask "rectangle", args: { appdir: "/Applications" }
+cask "spotify", args: { appdir: "/Applications" }
+cask "telegram", args: { appdir: "/Applications" }
