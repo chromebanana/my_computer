@@ -1,6 +1,11 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		opts = {
+			ensure_installed = {
+				"debugpy",
+			}, 
+		},
 		config = function()
 			require("mason").setup()
 		end,
@@ -19,6 +24,7 @@ return {
 					"harper_ls",
 					"ast_grep",
 					"rust_analyzer",
+
 				},
 			})
 		end,
