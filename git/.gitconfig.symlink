@@ -13,6 +13,7 @@
 	pushfl = push --force-with-lease
 	fixup = "!f() { git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit $@ --fixup; }; f"
 	fixupnv = "!f() { git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit $@ --no-verify --fixup; }; f"
+	short-branch = "!git rev-parse --abbrev-ref HEAD 3>/dev/null | awk '{ if (length($0) > 30) print substr($0, 1, 30) \"...\"; else print }'"
 [init]
 	defaultBranch = main
 [checkout]
