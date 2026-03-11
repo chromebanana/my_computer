@@ -32,21 +32,12 @@ dotfiles status -u           # show untracked files (discover new stuff in ~/.co
 
 On a fresh machine:
 ```bash
-git clone --bare git@github.com:chromebanana/my_computer.git "$HOME/.dotfiles.git"
-alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME/.config'
-dotfiles checkout
-dotfiles config status.showUntrackedFiles no
-dotfiles config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-dotfiles fetch origin
-~/.config/install.sh
+curl -fsSL https://raw.githubusercontent.com/chromebanana/my_computer/main/bootstrap.sh | bash
 ```
 
-If `dotfiles checkout` fails because files already exist in `~/.config`, back them up first:
-```bash
-mkdir -p ~/.config-backup
-dotfiles checkout 2>&1 | grep "^\t" | awk '{print $1}' | xargs -I{} mv ~/.config/{} ~/.config-backup/{}
-dotfiles checkout
-```
+This will install Homebrew, clone the repo as a bare git repo, checkout dotfiles into `~/.config`,
+and run `install.sh` to set up symlinks and packages. If existing files in `~/.config` conflict,
+they're backed up to `~/.config-backup`.
 
 # Follow-up steps
 
