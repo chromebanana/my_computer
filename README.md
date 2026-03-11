@@ -10,17 +10,51 @@ Dotfiles and setup scripts for my Mac.
 
 This should allow me to quickly set up a new machine with my preferred development environment.
 
-# Installation
-To install:
+# How it works
+
+This repo uses a **bare git repo** with `~/.config` as the work tree. The git database lives at `~/.dotfiles.git`, keeping `~/.config` free of a `.git` directory.
+
+An alias in `.zshrc` makes this seamless:
 ```bash
-sudo curl https://raw.githubusercontent.com/chromebanana/my_computer/master/bootstrap.sh | bash
+alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME/.config'
 ```
+
+Common commands:
+```bash
+dotfiles status              # show changes to tracked files
+dotfiles add <file>          # start tracking a new file
+dotfiles commit -m "..."     # commit
+dotfiles push                # push to GitHub
+dotfiles status -u           # show untracked files (discover new stuff in ~/.config)
+```
+
+# Installation
+
+On a fresh machine:
+```bash
+git clone --bare git@github.com:chromebanana/my_computer.git "$HOME/.dotfiles.git"
+alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME/.config'
+dotfiles checkout
+dotfiles config status.showUntrackedFiles no
+dotfiles config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+dotfiles fetch origin
+~/.config/install.sh
+```
+
+If `dotfiles checkout` fails because files already exist in `~/.config`, back them up first:
+```bash
+mkdir -p ~/.config-backup
+dotfiles checkout 2>&1 | grep "^\t" | awk '{print $1}' | xargs -I{} mv ~/.config/{} ~/.config-backup/{}
+dotfiles checkout
+```
+
 # Follow-up steps
-These steps have not been (or cannot be) automated, but should be done after running the bootstrap script
+
+These steps have not been (or cannot be) automated, but should be done after installation.
 
 ## General
 - [ ] sync iCloud docs
-- [ ] configure Trackpad settings: "tap to click" and Mouse: “Secondary click” + Speed
+- [ ] configure Trackpad settings: "tap to click" and Mouse: "Secondary click" + Speed
 - [ ] configure Keyboard settings: "Key Repeat" => FAST and "Delay Until Repeat" => SHORT (automation ideas [here](https://gist.github.com/brandonb927/3195465))
 - [ ] add mail accounts
 - [ ] change mail settings to sync manually, uncheck "Follow-Up Suggestions"
@@ -31,7 +65,7 @@ These steps have not been (or cannot be) automated, but should be done after run
 - [ ] create SSH key ([guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent))
 - [ ] add SSH key to Github
 
-## iTerm
+## iTerm (for reference -- not currently using)
 - [ ] install oh-my-zsh
 - [ ] enable jump Words: iTerm → Preferences → Profiles → Keys → Key Mappings -> Presets... → Natural Text Editing
 - [ ] install powerlevel10k
