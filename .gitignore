@@ -1,3 +1,14 @@
 *.secret.*
 .DS_Store
 tmux/plugins
+
+# Auth/secrets
+op/
+gh/hosts.yml
+
+# Auto-generated app config
+iterm2/
+sourcery/
+mpv/
+ktdb/
+kraken-cli/
