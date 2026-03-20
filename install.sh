@@ -13,6 +13,11 @@ find "${DOTFILES}" -name "*.symlink" | while read -r file; do
     ln -sfv "${file}" "$HOME/.$(basename "${file%.*}" | sed 's/^\.//')"
 done
 
+pinfo "Linking Claude Code config"
+mkdir -p "$HOME/.claude"
+ln -sfv "${DOTFILES}/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+ln -sfv "${DOTFILES}/.claude/skills" "$HOME/.claude/skills"
+
 pinfo "Installing homebrew bundle"
 brewfile_path="${DOTFILES}/homebrew/brewfile"
 pinfo "Installing brewfile from ${brewfile_path}"
