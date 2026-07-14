@@ -12,7 +12,7 @@ return {
 			desc = "Copy formatted PR link",
 		},
 	},
-	lazy = true,
+	lazy = false,
 	-- dev = true,
 	opts = {
 		commands = {
