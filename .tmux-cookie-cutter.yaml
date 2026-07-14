@@ -1,4 +1,6 @@
 default_windows:
-  - name: "editor"
+  - name: "neovim"
     command: "nvim"
   - name: "terminal"
+  - name: "claude"
+    command: "claude -r"

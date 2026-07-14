@@ -1,3 +1,4 @@
+tap "aranborkum/tap"
 tap "kraken/temp"
 tap "nikitabobko/tap"
 tap "octoenergy/kraken-cli", "git@github.com:octoenergy/kraken-cli.git"
@@ -39,6 +40,8 @@ brew "ripgrep"
 brew "rust"
 brew "tig"
 brew "tmux"
+brew "aranborkum/tap/tmuxedo", trusted: true
+cargo "tmux-sessionizer"
 brew "todo-txt"
 brew "wget"
 brew "xclip"

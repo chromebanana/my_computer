@@ -1,0 +1,7 @@
+[[search_dirs]]
+path = "/Users/william.cragg/projects"
+depth = 1
+
+[[search_dirs]]
+path = "/Users/william.cragg/.config"
+depth = 10
