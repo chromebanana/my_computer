@@ -4,7 +4,7 @@ tmux/plugins
 
 # Auth/secrets
 op/
-gh/hosts.yml
+gh/
 
 # Auto-generated app config
 iterm2/
