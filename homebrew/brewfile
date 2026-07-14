@@ -1,6 +1,8 @@
 tap "aranborkum/tap"
+tap "databricks/tap"
 tap "kraken/temp"
 tap "nikitabobko/tap"
+tap "octoenergy/tap"
 tap "octoenergy/kraken-cli", "git@github.com:octoenergy/kraken-cli.git"
 brew "xz"
 brew "automake"
@@ -43,7 +45,9 @@ brew "tmux"
 brew "aranborkum/tap/tmuxedo", trusted: true
 cargo "tmux-sessionizer"
 brew "todo-txt"
+brew "pandoc"
 brew "wget"
+brew "yq"
 brew "xclip"
 brew "xdg-ninja"
 brew "zlib"
@@ -62,7 +66,8 @@ cask "iterm2", args: { appdir: "/Applications" }
 cask "libreoffice", args: { appdir: "/Applications" }
 cask "notion"
 cask "obsidian", args: { appdir: "/Applications" }
-cask "postgres-unofficial"
+cask "claude-code"
+cask "postgres-app"
 cask "rectangle", args: { appdir: "/Applications" }
 cask "spotify", args: { appdir: "/Applications" }
 cask "telegram", args: { appdir: "/Applications" }
