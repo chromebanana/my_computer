@@ -14,9 +14,11 @@ find "${DOTFILES}" -name "*.symlink" | while read -r file; do
 done
 
 pinfo "Linking Claude Code config"
-mkdir -p "$HOME/.claude"
+mkdir -p "$HOME/.claude/skills"
 ln -sfv "${DOTFILES}/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-ln -sfv "${DOTFILES}/.claude/skills" "$HOME/.claude/skills"
+for skill in "${DOTFILES}/.claude/skills/"/*/; do
+    ln -sfv "${skill}" "$HOME/.claude/skills/$(basename "${skill}")"
+done
 
 pinfo "Installing homebrew bundle"
 brewfile_path="${DOTFILES}/homebrew/brewfile"
