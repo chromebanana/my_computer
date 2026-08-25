@@ -104,6 +104,26 @@ cd "$WORKTREE_DIR"
 echo "📍 Changed to: $WORKTREE_DIR"
 echo ""
 
+# Set up pre-commit hooks if a template config exists at the repo root
+PRE_COMMIT_TEMPLATE="$REPO_ROOT/.pre-commit-config.template.yaml"
+if [ -f "$PRE_COMMIT_TEMPLATE" ]; then
+  echo "🔧 Setting up pre-commit hooks..."
+  ln -sf "$PRE_COMMIT_TEMPLATE" "$WORKTREE_DIR/.pre-commit-config.yaml"
+  echo "✓ Linked .pre-commit-config.yaml → $PRE_COMMIT_TEMPLATE"
+  # pre-commit lives in the worktree venv; fall back to PATH if venv not yet created
+  PRE_COMMIT_BIN="$WORKTREE_DIR/.venv/bin/pre-commit"
+  if [ ! -x "$PRE_COMMIT_BIN" ]; then
+    PRE_COMMIT_BIN="$(command -v pre-commit 2>/dev/null || true)"
+  fi
+  if [ -n "$PRE_COMMIT_BIN" ]; then
+    "$PRE_COMMIT_BIN" install --hook-type pre-commit --hook-type post-merge
+    echo "✓ pre-commit hooks installed (pre-push skipped)"
+  else
+    echo "⚠️  pre-commit not found — run 'pre-commit install --hook-type pre-commit --hook-type post-merge' after bootstrapping"
+  fi
+  echo ""
+fi
+
 # Run .worktree script if it exists at repo root
 WORKSPACE_SCRIPT="$REPO_ROOT/.worktree"
 if [ -f "$WORKSPACE_SCRIPT" ] && [ -x "$WORKSPACE_SCRIPT" ]; then
